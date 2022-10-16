@@ -1,18 +1,24 @@
 ﻿int randomNumber = GetRandomNumber(1, 999999);
 Console.Write("Сгенерировалось число ");
 Console.WriteLine(randomNumber);
-int max = randomNumber % 10;
-randomNumber = randomNumber / 10;
-while(randomNumber > 0)
+int maxValue = FindMaxValue(randomNumber);
+Console.Write($"Максимальная цифра числа - {maxValue}");
+
+int FindMaxValue(int number)
 {
-    int lastNumber = randomNumber % 10;
-    if(lastNumber > max)
+    int max = number % 10;
+    number = number / 10;
+    while(number > 0)
     {
-        max = lastNumber;
+        int lastNumber = number % 10;
+        if(lastNumber > max)
+        {
+            max = lastNumber;
+        }
+        number = number / 10;    
     }
-    randomNumber = randomNumber / 10;    
+    return max;
 }
-Console.WriteLine($"максимальное цифра в сгенерированном - {max}");
 int GetRandomNumber(int minValue, int maxValue)
 {
     Random random = new Random();
